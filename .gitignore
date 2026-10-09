@@ -1,0 +1,3 @@
+# Lo que escribe la app en el servidor: no es código
+api/avisos.log
+# config.php SÍ se sube: ya no tiene secretos (los lee con getenv)

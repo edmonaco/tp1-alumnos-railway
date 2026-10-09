@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alumnos</title>
+  <!-- Leaflet: la librería del mapa, servida desde una CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <h1>Alumnos</h1>
+
+  <form id="formAlta">
+    <input type="text" id="campoNombre" placeholder="Nombre" required>
+    <input type="email" id="campoEmail" placeholder="Email" required>
+    <input type="text" id="campoCiudad" placeholder="Ciudad (opcional)">
+    <button type="submit">Agregar</button>
+  </form>
+  <p id="mensaje"></p>
+
+  <table border="1">
+    <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Ciudad</th><th>Acciones</th></tr></thead>
+    <tbody id="cuerpoTabla"></tbody>
+  </table>
+
+  <div id="mapa" style="height: 400px; margin-top: 16px;"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
