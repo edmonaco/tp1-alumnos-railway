@@ -8,6 +8,14 @@ RUN docker-php-ext-install pdo_mysql
 ENV PORT=80
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
 
+# Apache tiene que cargar un solo MPM: prefork (el que necesita PHP).
+# En Railway puede aparecer otro más y Apache no arranca ("More than one MPM loaded"),
+# así que se quitan los demás al construir y otra vez al arrancar.
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.* \
+    && a2enmod mpm_prefork
+
 COPY . /var/www/html/
 # para que avisos.log (modo simulación) se pueda escribir
 RUN chown -R www-data:www-data /var/www/html/api
+
+CMD ["sh", "-c", "rm -f /etc/apache2/mods-enabled/mpm_event.* /etc/apache2/mods-enabled/mpm_worker.*; exec apache2-foreground"]
